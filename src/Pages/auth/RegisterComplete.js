@@ -81,7 +81,6 @@ const RegisterComplete = ({history}) => {
                 <div className="row"> 
                     <div className='col-md-6 offset-md-3'>
                         <h4>Register Complete</h4>
-                        <br />
                         {completeRegistrationForm()}  
                     </div>
                 </div>
