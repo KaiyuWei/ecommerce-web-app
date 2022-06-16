@@ -19,8 +19,8 @@ root.render(
   // <React.StrictMode>
     <Provider store={store}>   {/* to make the store available to all components */}
       <BrowserRouter>
-      <App /> 
-    </BrowserRouter>
+        <App /> 
+      </BrowserRouter>
     </Provider>
 
  // </React.StrictMode>
