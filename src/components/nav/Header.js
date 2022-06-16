@@ -26,7 +26,7 @@ const Header = () => {
         payload: null,
       });
       history.push("/login");
-    }
+    };
       
     const items = [
         {
