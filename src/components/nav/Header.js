@@ -4,7 +4,8 @@ import { Menu } from 'antd';
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom'
 import firebase from 'firebase/compat/app';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const {SubMenu} = Menu;
@@ -13,6 +14,7 @@ const Header = () => {
     const [current, setCurrent] = useState('home');
     let history = useHistory();
     let dispatch = useDispatch();
+    let {user} = useSelector((state) => ({...state})); 
 
     const handleClick = (e) => {
         // console.log(e.key);
@@ -30,44 +32,50 @@ const Header = () => {
       
     const items = [
         {
-          label: <Link to='/'>Home</Link>,
+          label: <Link to='/'>Home </Link>, //- {JSON.stringify(user)}
           key: 'home',
           icon: <AppstoreOutlined />,
         },
-        {
-            label: 'Username',
-            key: 'SubMenu',
-            icon: <SettingOutlined />,
-            children: [
-              {
-                label: 'Option 1',
-                key: 'setting:1',
-              },
-              {
-                label: 'Option 2',
-                key: 'setting:2',
-              },
-              {
-                label: <item onClick={logout}>Logout</item>,
-                key: 'setting:3',
-                icon: <LogoutOutlined />
+        
+        ...(user ? [{
+          label: (user ? user.email.split('@')[0] : 'Username'),
+          key: 'SubMenu',
+          icon: <SettingOutlined />,
+          style: { marginLeft: 'auto' },
+          children: [
+            {
+              label: 'Option 1',
+              key: 'setting:1',
             },
-            ],
-        },
-        {
-            label: <Link to='/register'>Register</Link>,
-            key: 'register',
-            icon: <UserAddOutlined />,
-            style: { marginLeft: 1060},   // problem: hard-coded margin
-        },
-        {
-            label: <Link to='/login'>Login</Link>,
-            key: 'login',
-            icon: <UserOutlined />,
-            style: { marginLeft: 'auto'},
-        },               
-      ];
+            {
+              label: 'Option 2',
+              key: 'setting:2',
+            },
+            {
+              label: <item onClick={logout}>Logout</item>,
+              key: 'setting:3',
+              icon: <LogoutOutlined />
+            }
+          ],
+        }] : []),
 
+        ...(user ? [] :[
+              {
+                label: <Link to='/register'>Register</Link>,
+                key: 'register',
+                icon: <UserAddOutlined />,
+                style: { marginLeft: 'auto'}   // problem: hard-coded margin
+              },
+              {
+                label: <Link to='/login'>Login</Link>,
+                key: 'login',
+                icon: <UserOutlined />,
+                style: { marginLeft: 0}
+              }
+            ]
+          ),      
+      ];
+  
     return <Menu  onClick={handleClick} selectedKeys={[current]} mode="horizontal" items={items} />;
 }
 
