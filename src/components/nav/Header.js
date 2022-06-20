@@ -64,7 +64,7 @@ const Header = () => {
                 label: <Link to='/register'>Register</Link>,
                 key: 'register',
                 icon: <UserAddOutlined />,
-                style: { marginLeft: 'auto'}   // problem: hard-coded margin
+                style: { marginLeft: 'auto'} 
               },
               {
                 label: <Link to='/login'>Login</Link>,
