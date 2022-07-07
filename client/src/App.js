@@ -3,12 +3,12 @@ import {Switch, Route} from 'react-router-dom';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-import Login from './Pages/auth/Login';
-import Register from './Pages/auth/Register';
-import Home from './Pages/Home';
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
+import Home from './pages/Home';
 import Header from './components/nav/Header';
-import RegisterComplete from './Pages/auth/RegisterComplete'
-import ForgotPassword from "./Pages/auth/ForgotPassword";
+import RegisterComplete from './pages/auth/RegisterComplete'
+import ForgotPassword from "./pages/auth/ForgotPassword";
 
 import {auth} from './firebase'
 import { useDispatch } from "react-redux";
